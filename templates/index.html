@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #f0f4ff, #ffffff);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .home-container {
+        max-width: 700px;
+        margin: 60px auto;
+        padding: 40px;
+        background: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    p.lead {
+        font-size: 18px;
+        color: #555;
+        margin-top: 15px;
+    }
+
+    .btn-primary {
+        background: #4e73df;
+        border: none;
+        padding: 12px 30px;
+        font-size: 18px;
+        border-radius: 50px;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background: #2e59d9;
+        transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<div class="home-container">
+    <h1>Welcome to the Hotel Booking System</h1>
+    <p class="lead">Book your favorite rooms easily.</p>
+
+    <a href="{{ url_for('main.rooms') }}" class="btn btn-primary btn-lg mt-3">View Rooms</a>
+</div>
+
+{% endblock %}

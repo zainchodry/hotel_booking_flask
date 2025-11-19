@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #eef2ff, #ffffff);
+        font-family: "Poppins", sans-serif;
+    }
+
+    h2 {
+        text-align: center;
+        color: #2c3e50;
+        font-weight: 700;
+        margin-bottom: 30px;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .card {
+        border: none;
+        border-radius: 18px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        transition: 0.3s;
+        background: #ffffff;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+    }
+
+    .card-body {
+        padding: 25px;
+    }
+
+    .card h5 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #34495e;
+    }
+
+    .card p {
+        margin: 5px 0;
+        font-size: 15px;
+        color: #555;
+    }
+
+    .btn-primary {
+        background: #4e73df;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 40px;
+        transition: 0.3s;
+        font-size: 15px;
+    }
+
+    .btn-primary:hover {
+        background: #2e59d9;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        border-radius: 40px;
+        font-size: 15px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(15px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<h2>Available Rooms</h2>
+
+<div class="row">
+    {% for room in rooms %}
+    <div class="col-md-4 mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5>Room {{ room.room_number }}</h5>
+                <p>Type: {{ room.room_type }}</p>
+                <p>Price: Rs {{ room.price }}</p>
+
+                {% if room.is_available %}
+                <a href="{{ url_for('main.room_detail', room_id=room.id) }}" class="btn btn-primary">Book Now</a>
+                {% else %}
+                <button class="btn btn-secondary" disabled>Not Available</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
